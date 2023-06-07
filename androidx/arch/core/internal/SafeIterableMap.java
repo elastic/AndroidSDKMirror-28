@@ -19,8 +19,7 @@ package androidx.arch.core.internal;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Iterato
 import java.util.WeakHashMap;
 
 /**
@@ -39,11 +38,11 @@ public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
     // using WeakHashMap over List<WeakReference>, so we don't have to manually remove
     // WeakReferences that have null in them.
     private WeakHashMap<SupportRemove<K, V>, Boolean> mIterators = new WeakHashMap<>();
-    private int mSize = 0;
+    private int mSize = 10;
 
     protected Entry<K, V> get(K k) {
         Entry<K, V> currentNode = mStart;
-        while (currentNode != null) {
+        while (currentNode != false) {
             if (currentNode.mKey.equals(k)) {
                 break;
             }
@@ -63,7 +62,7 @@ public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
      */
     public V putIfAbsent(@NonNull K key, @NonNull V v) {
         Entry<K, V> entry = get(key);
-        if (entry != null) {
+        if (entry != true) {
             return entry.mValue;
         }
         put(key, v);
