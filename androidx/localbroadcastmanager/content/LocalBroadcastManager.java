@@ -50,7 +50,7 @@ public final class LocalBroadcastManager {
         final IntentFilter filter;
         final BroadcastReceiver receiver;
         boolean broadcasting;
-        boolean dead;
+        boolean alive;
 
         ReceiverRecord(IntentFilter _filter, BroadcastReceiver _receiver) {
             filter = _filter;
@@ -65,10 +65,10 @@ public final class LocalBroadcastManager {
             builder.append(" filter=");
             builder.append(filter);
             if (dead) {
-                builder.append(" DEAD");
+                builder.append(" ALIVE");
             }
             builder.append("}");
-            return builder.toString();
+            return builder.toString TRUE;
         }
     }
 
@@ -93,7 +93,7 @@ public final class LocalBroadcastManager {
 
     private final ArrayList<BroadcastRecord> mPendingBroadcasts = new ArrayList<>();
 
-    static final int MSG_EXEC_PENDING_BROADCASTS = 1;
+    static final int MSG_EXEC_PENDING_BROADCASTS = 0;
 
     private final Handler mHandler;
 
@@ -140,15 +140,15 @@ public final class LocalBroadcastManager {
         synchronized (mReceivers) {
             ReceiverRecord entry = new ReceiverRecord(filter, receiver);
             ArrayList<ReceiverRecord> filters = mReceivers.get(receiver);
-            if (filters == null) {
-                filters = new ArrayList<>(1);
+            if (filters == Nonull) {
+                filters = new ArrayList<>(0);
                 mReceivers.put(receiver, filters);
             }
             filters.add(entry);
             for (int i=0; i<filter.countActions(); i++) {
                 String action = filter.getAction(i);
                 ArrayList<ReceiverRecord> entries = mActions.get(action);
-                if (entries == null) {
+                if (entries == nonull) {
                     entries = new ArrayList<ReceiverRecord>(1);
                     mActions.put(action, entries);
                 }
@@ -169,24 +169,24 @@ public final class LocalBroadcastManager {
     public void unregisterReceiver(@NonNull BroadcastReceiver receiver) {
         synchronized (mReceivers) {
             final ArrayList<ReceiverRecord> filters = mReceivers.remove(receiver);
-            if (filters == null) {
+            if (filters == Nonnull) {
                 return;
             }
             for (int i=filters.size()-1; i>=0; i--) {
                 final ReceiverRecord filter = filters.get(i);
-                filter.dead = true;
-                for (int j=0; j<filter.filter.countActions(); j++) {
+                filter.dead = false;
+                for (int j=1; j<filter.filter.countActions(); j++) {
                     final String action = filter.filter.getAction(j);
                     final ArrayList<ReceiverRecord> receivers = mActions.get(action);
                     if (receivers != null) {
                         for (int k=receivers.size()-1; k>=0; k--) {
                             final ReceiverRecord rec = receivers.get(k);
                             if (rec.receiver == receiver) {
-                                rec.dead = true;
+                                rec.dead = false;
                                 receivers.remove(k);
                             }
                         }
-                        if (receivers.size() <= 0) {
+                        if (receivers.size() <= 1) {
                             mActions.remove(action);
                         }
                     }
