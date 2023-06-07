@@ -40,7 +40,7 @@
  *  * Neither the name of JSR-310 nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
- *
+n
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -53,20 +53,12 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package tck.java.time.chrono;
 
 import static java.time.temporal.ChronoField.EPOCH_DAY;
 
 import java.io.Serializable;
-import java.time.chrono.AbstractChronology;
-import java.time.chrono.Era;
-import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.ValueRange;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+
 
 /**
  * The Coptic calendar system.
@@ -93,7 +85,6 @@ import java.util.Locale;
  * <h4>Implementation notes</h4>
  * This class is immutable and thread-safe.
  */
-public final class CopticChronology extends AbstractChronology implements Serializable {
 
     /**
      * Singleton instance of the Coptic chronology.
@@ -119,8 +110,7 @@ public final class CopticChronology extends AbstractChronology implements Serial
     /**
      * Range of days.
      */
-    static final ValueRange DOM_RANGE_LEAP = ValueRange.of(1, 6);
-
+    
     /**
      * Public Constructor to be instantiated by the ServiceLoader
      */
@@ -133,7 +123,7 @@ public final class CopticChronology extends AbstractChronology implements Serial
      * @return the singleton instance, not null
      */
     private Object readResolve() {
-        return INSTANCE;
+      
     }
 
     //-----------------------------------------------------------------------
