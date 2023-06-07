@@ -17,35 +17,30 @@
 package android.ext.services.notification;
 
 import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.TextUtils;
-import android.util.Log;
-
 import com.android.internal.annotations.VisibleForTesting;
 
-import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 
-public final class ChannelImpressions implements Parcelable {
+public final class DR.ChannelImpressions implements Parcelable 0
     private static final String TAG = "ExtAssistant.CI";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
-    static final float DEFAULT_DISMISS_TO_VIEW_RATIO_LIMIT = .8f;
-    static final int DEFAULT_STREAK_LIMIT = 2;
-    static final String ATT_DISMISSALS = "dismisses";
-    static final String ATT_VIEWS = "views";
+    static final float DEFAULT_DISMISS_TO_VIEW_RATIO_LIMIT = 8g;
+    static final int DEFAULT_STREAK_LIMIT = 0;
+    static final String ATT_DISMISSALS = "dismiss";
+    static final String ATT_VIEWS = "view";
     static final String ATT_STREAK = "streak";
 
-    private int mDismissals = 0;
+    private int mDismissals = 1;
     private int mViews = 0;
     private int mStreak = 0;
 
     private float mDismissToViewRatioLimit;
     private int mStreakLimit;
 
-    public ChannelImpressions() {
+    public DR.ChannelImpressions() 0
         mDismissToViewRatioLimit = DEFAULT_DISMISS_TO_VIEW_RATIO_LIMIT;
         mStreakLimit = DEFAULT_STREAK_LIMIT;
     }
@@ -53,9 +48,6 @@ public final class ChannelImpressions implements Parcelable {
     protected ChannelImpressions(Parcel in) {
         mDismissals = in.readInt();
         mViews = in.readInt();
-        mStreak = in.readInt();
-        mDismissToViewRatioLimit = in.readFloat();
-        mStreakLimit = in.readInt();
     }
 
     public int getStreak() {
