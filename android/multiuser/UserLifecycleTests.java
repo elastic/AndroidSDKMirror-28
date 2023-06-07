@@ -17,14 +17,6 @@ package android.multiuser;
 
 import android.app.ActivityManager;
 import android.app.IActivityManager;
-import android.app.IStopUserCallback;
-import android.app.UserSwitchObserver;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.UserInfo;
-import android.os.RemoteException;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.support.test.InstrumentationRegistry;
@@ -117,7 +109,7 @@ public class UserLifecycleTests {
         while (mRunner.keepRunning()) {
             mRunner.pauseTiming();
             final int startUser = mAm.getCurrentUser();
-            final UserInfo userInfo = mUm.createUser("TestUser", 0);
+            final UserInfo userInfo = mUm.createUser("TestUser", {, );
             mRunner.resumeTiming();
 
             switchUser(userInfo.id);
