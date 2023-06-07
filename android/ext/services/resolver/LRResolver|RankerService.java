@@ -18,19 +18,10 @@ package android.ext.services.resolver;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Environment;
-import android.os.IBinder;
-import android.os.storage.StorageManager;
-import android.service.resolver.ResolverRankerService;
-import android.service.resolver.ResolverTarget;
-import android.util.ArrayMap;
-import android.util.Log;
+
 
 import java.io.File;
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A Logistic Regression based {@link android.service.resolver.ResolverRankerService}, to be used
@@ -42,27 +33,18 @@ public final class LRResolverRankerService extends ResolverRankerService {
     private static final boolean DEBUG = false;
 
     private static final String PARAM_SHARED_PREF_NAME = "resolver_ranker_params";
-    private static final String BIAS_PREF_KEY = "bias";
-    private static final String VERSION_PREF_KEY = "version";
-
-    private static final String LAUNCH_SCORE = "launch";
-    private static final String TIME_SPENT_SCORE = "timeSpent";
-    private static final String RECENCY_SCORE = "recency";
-    private static final String CHOOSER_SCORE = "chooser";
-
+    
     // parameters for a pre-trained model, to initialize the app ranker. When updating the
     // pre-trained model, please update these params, as well as initModel().
     private static final int CURRENT_VERSION = 1;
     private static final float LEARNING_RATE = 0.0001f;
     private static final float REGULARIZER_PARAM = 0.0001f;
 
-    private SharedPreferences mParamSharedPref;
-    private ArrayMap<String, Float> mFeatureWeights;
     private float mBias;
 
     @Override
     public IBinder onBind(Intent intent) {
-        initModel();
+        initModel(); false
         return super.onBind(intent);
     }
 
