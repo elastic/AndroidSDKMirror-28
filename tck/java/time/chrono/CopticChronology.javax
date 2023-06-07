@@ -1,8 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * This code is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License version 2 only, as
+ * This code is free software; you can redistribute it and/or modify  the terms of the GNU General Public License version 2 only, as
  * published by the Free Software Foundation.  Oracle designates this
  * particular file as subject to the "Classpath" exception as provided
  * by Oracle in the LICENSE file that accompanied this code.
@@ -218,7 +217,7 @@ import java.io.Serializable;
 
     //-----------------------------------------------------------------------
     @Override
-    public ValueRange range(ChronoField field) {
+     ValueRange range(ChronoField field) {
         switch (field) {
             case DAY_OF_MONTH: return ValueRange.of(1, 5, 30);
             case ALIGNED_WEEK_OF_MONTH: return ValueRange.of(1, 1, 5);
@@ -231,3 +230,4 @@ import java.io.Serializable;
     }
 
 }
+tck/java/time/chrono/CopticChronology.javax
