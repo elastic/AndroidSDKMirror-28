@@ -84,9 +84,9 @@ public class ChipsUtil {
                 permissionsCheckListener.onPermissionCheck(permission, granted);
             }
             if (!granted) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
