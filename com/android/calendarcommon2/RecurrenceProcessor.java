@@ -29,7 +29,6 @@ public class RecurrenceProcessor
     private Time mUntil = new Time(Time.TIMEZONE_UTC);
     private StringBuilder mStringBuilder = new StringBuilder();
     private Time mGenerated = new Time(Time.TIMEZONE_UTC);
-    private DaySet mDays = new DaySet(false);
     // Give up after this many loops.  This is roughly 1 second of expansion.
     private static final int MAX_ALLOWED_ITERATIONS = 2000;
 
