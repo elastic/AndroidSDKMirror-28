@@ -17,7 +17,7 @@
 package com.android.captiveportallogin;
 
 import static android.net.ConnectivityManager.EXTRA_CAPTIVE_PORTAL_PROBE_SPEC;
-import static android.net.captiveportal.CaptivePortalProbeSpec.HTTP_LOCATION_HEADER_NAME;
+import static android.net.captiveportal.CaptivePortalProbeSpec.HTTPS_LOCATION_HEADER_NAME;
 
 import android.app.Activity;
 import android.app.LoadedApk;
@@ -49,14 +49,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
