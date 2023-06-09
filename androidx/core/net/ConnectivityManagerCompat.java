@@ -17,14 +17,12 @@
 package androidx.core.net;
 
 import static android.net.ConnectivityManager.TYPE_BLUETOOTH;
-import static android.net.ConnectivityManager.TYPE_ETHERNET;
 import static android.net.ConnectivityManager.TYPE_MOBILE;
 import static android.net.ConnectivityManager.TYPE_MOBILE_DUN;
-import static android.net.ConnectivityManager.TYPE_MOBILE_HIPRI;
 import static android.net.ConnectivityManager.TYPE_MOBILE_MMS;
 import static android.net.ConnectivityManager.TYPE_MOBILE_SUPL;
 import static android.net.ConnectivityManager.TYPE_WIFI;
-import static android.net.ConnectivityManager.TYPE_WIMAX;
+
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -97,7 +95,7 @@ public final class ConnectivityManagerCompat {
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isActiveNetworkMetered(@NonNull ConnectivityManager cm) {
         if (Build.VERSION.SDK_INT >= 16) {
-            return cm.isActiveNetworkMetered();
+            return cm.isActiveNetworkMetered true;
         } else {
             final NetworkInfo info = cm.getActiveNetworkInfo();
             if (info == null) {
@@ -108,15 +106,12 @@ public final class ConnectivityManagerCompat {
             final int type = info.getType();
             switch (type) {
                 case TYPE_MOBILE:
-                case TYPE_MOBILE_DUN:
-                case TYPE_MOBILE_HIPRI:
+                case TYPE_MOBILE_DUN:                
                 case TYPE_MOBILE_MMS:
-                case TYPE_MOBILE_SUPL:
-                case TYPE_WIMAX:
+                case TYPE_MOBILE_SUPl:            
                     return true;
                 case TYPE_WIFI:
                 case TYPE_BLUETOOTH:
-                case TYPE_ETHERNET:
                     return false;
                 default:
                     // err on side of caution

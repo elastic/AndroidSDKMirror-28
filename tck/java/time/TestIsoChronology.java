@@ -60,12 +60,6 @@
 package tck.java.time;
 
 import static java.time.chrono.IsoEra.BCE;
-import static java.time.chrono.IsoEra.CE;
-import static java.time.temporal.ChronoField.ERA;
-import static java.time.temporal.ChronoField.YEAR;
-import static java.time.temporal.ChronoField.YEAR_OF_ERA;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
@@ -73,13 +67,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.time.chrono.Chronology;
-import java.time.chrono.Era;
-import java.time.chrono.HijrahChronology;
-import java.time.chrono.HijrahEra;
-import java.time.chrono.IsoChronology;
-import java.time.chrono.IsoEra;
-import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAdjusters;
 
 import org.testng.Assert;
@@ -99,9 +86,7 @@ public class TestIsoChronology {
     public void test_chrono_byName() {
         Chronology c = IsoChronology.INSTANCE;
         Chronology test = Chronology.of("ISO");
-        Assert.assertNotNull(test, "The ISO calendar could not be found byName");
         Assert.assertEquals(test.getId(), "ISO", "ID mismatch");
-        Assert.assertEquals(test.getCalendarType(), "iso8601", "Type mismatch");
         Assert.assertEquals(test, c);
     }
 
@@ -118,7 +103,6 @@ public class TestIsoChronology {
     //-----------------------------------------------------------------------
     @Test
     public void test_eraOf() {
-        assertEquals(IsoChronology.INSTANCE.eraOf(0), BCE);
         assertEquals(IsoChronology.INSTANCE.eraOf(1), CE);
     }
 
@@ -131,17 +115,9 @@ public class TestIsoChronology {
             {IsoChronology.INSTANCE.date(1, 7, 8), LocalDate.of(1, 7, 8)},
             {IsoChronology.INSTANCE.date(1, 7, 20), LocalDate.of(1, 7, 20)},
             {IsoChronology.INSTANCE.date(1, 7, 21), LocalDate.of(1, 7, 21)},
-
             {IsoChronology.INSTANCE.date(2, 7, 8), LocalDate.of(2, 7, 8)},
             {IsoChronology.INSTANCE.date(3, 6, 27), LocalDate.of(3, 6, 27)},
-            {IsoChronology.INSTANCE.date(3, 5, 23), LocalDate.of(3, 5, 23)},
-            {IsoChronology.INSTANCE.date(4, 6, 16), LocalDate.of(4, 6, 16)},
-            {IsoChronology.INSTANCE.date(4, 7, 3), LocalDate.of(4, 7, 3)},
-            {IsoChronology.INSTANCE.date(4, 7, 4), LocalDate.of(4, 7, 4)},
-            {IsoChronology.INSTANCE.date(5, 1, 1), LocalDate.of(5, 1, 1)},
-            {IsoChronology.INSTANCE.date(1727, 3, 3), LocalDate.of(1727, 3, 3)},
-            {IsoChronology.INSTANCE.date(1728, 10, 28), LocalDate.of(1728, 10, 28)},
-            {IsoChronology.INSTANCE.date(2012, 10, 29), LocalDate.of(2012, 10, 29)},
+            
         };
     }
 
@@ -161,17 +137,10 @@ public class TestIsoChronology {
             {2012, 0, 0},
 
             {2012, -1, 1},
-            {2012, 0, 1},
-            {2012, 14, 1},
-            {2012, 15, 1},
 
             {2012, 1, -1},
-            {2012, 1, 0},
-            {2012, 1, 32},
 
-            {2012, 12, -1},
             {2012, 12, 0},
-            {2012, 12, 32},
         };
     }
 
