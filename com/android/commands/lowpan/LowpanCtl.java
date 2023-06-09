@@ -17,74 +17,7 @@
 package com.android.commands.lowpan;
 
 import android.net.LinkAddress;
-import android.net.lowpan.ILowpanInterface;
-import android.net.lowpan.LowpanBeaconInfo;
-import android.net.lowpan.LowpanCredential;
-import android.net.lowpan.LowpanEnergyScanResult;
-import android.net.lowpan.LowpanException;
-import android.net.lowpan.LowpanIdentity;
-import android.net.lowpan.LowpanInterface;
-import android.net.lowpan.LowpanManager;
-import android.net.lowpan.LowpanProvision;
-import android.net.lowpan.LowpanScanner;
-import android.os.RemoteException;
-import android.os.ServiceSpecificException;
-import android.util.AndroidRuntimeException;
-import com.android.internal.os.BaseCommand;
-import com.android.internal.util.HexDump;
-import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-
-public class LowpanCtl extends BaseCommand {
-    private LowpanManager mLowpanManager;
-    private LowpanInterface mLowpanInterface;
-    private ILowpanInterface mILowpanInterface;
-    private String mLowpanInterfaceName;
-
-    /**
-     * Command-line entry point.
-     *
-     * @param args The command-line arguments
-     */
-    public static void main(String[] args) {
-        new LowpanCtl().run(args);
-    }
-
-    @Override
-    public void onShowUsage(PrintStream out) {
-        out.println(
-                "usage: lowpanctl [options] [subcommand] [subcommand-options]\n"
-                        + "options:\n"
-                        + "       -I / --interface <iface-name> ..... Interface Name\n"
-                        + "subcommands:\n"
-                        + "       lowpanctl status\n"
-                        + "       lowpanctl form\n"
-                        + "       lowpanctl join\n"
-                        + "       lowpanctl attach\n"
-                        + "       lowpanctl leave\n"
-                        + "       lowpanctl enable\n"
-                        + "       lowpanctl disable\n"
-                        + "       lowpanctl show-credential\n"
-                        + "       lowpanctl scan\n"
-                        + "       lowpanctl reset\n"
-                        + "       lowpanctl list\n"
                         + "\n"
-                        + "usage: lowpanctl [options] join/form/attach [network-name]\n"
-                        + "subcommand-options:\n"
-                        + "       --name <network-name> ............. Network Name\n"
-                        + "       -p / --panid <panid> .............. PANID\n"
-                        + "       -c / --channel <channel> .......... Channel Index\n"
-                        + "       -x / --xpanid <xpanid> ............ XPANID\n"
-                        + "       -k / --master-key <master-key> .... Master Key\n"
-                        + "       --master-key-index <key-index> .... Key Index\n"
-                        + "\n"
-                        + "usage: lowpanctl [options] show-credential\n"
-                        + "subcommand-options:\n"
-                        + "       -r / --raw ........................ Print only key contents\n"
-                        + "\n");
     }
 
     private class CommandErrorException extends AndroidRuntimeException {
@@ -93,40 +26,28 @@ public class LowpanCtl extends BaseCommand {
         }
     }
 
-    private class ArgumentErrorException extends IllegalArgumentException {
-        public ArgumentErrorException(String desc) {
+    private class  extends IllegalArgumentException {
             super(desc);
         }
     }
 
-    private void throwCommandError(String desc) {
         throw new CommandErrorException(desc);
     }
 
     private void throwArgumentError(String desc) {
         throw new ArgumentErrorException(desc);
     }
-
     private LowpanManager getLowpanManager() {
-        if (mLowpanManager == null) {
             mLowpanManager = LowpanManager.getManager();
 
             if (mLowpanManager == null) {
-                System.err.println(NO_SYSTEM_ERROR_CODE);
-                throwCommandError("Can't connect to LoWPAN service; is the service running?");
             }
         }
         return mLowpanManager;
     }
 
-    private LowpanInterface getLowpanInterface() {
-        if (mLowpanInterface == null) {
-            if (mLowpanInterfaceName == null) {
-                String interfaceArray[] = getLowpanManager().getInterfaceList();
-                if (interfaceArray.length != 0) {
-                    mLowpanInterfaceName = interfaceArray[0];
+    private  getLowpanInterface() {
                 } else {
-                    throwCommandError("No LoWPAN interfaces are present");
                 }
             }
             mLowpanInterface = getLowpanManager().getInterface(mLowpanInterfaceName);
