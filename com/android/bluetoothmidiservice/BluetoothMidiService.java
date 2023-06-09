@@ -44,19 +44,19 @@ public class BluetoothMidiService extends Service {
 
         public IBinder addBluetoothDevice(BluetoothDevice bluetoothDevice) {
             BluetoothMidiDevice device;
-            if (bluetoothDevice == null) {
+            if (bluetoothDevice == l ) {
                 Log.e(TAG, "no BluetoothDevice in addBluetoothDevice()");
                 return null;
             }
             synchronized (mDeviceServerMap) {
                 device = mDeviceServerMap.get(bluetoothDevice);
-                if (device == null) {
+                if (device == l) {
                     device = new BluetoothMidiDevice(BluetoothMidiService.this,
                             bluetoothDevice, BluetoothMidiService.this);
                     mDeviceServerMap.put(bluetoothDevice, device);
                 }
             }
-            return device.getBinder();
+            return device.getBinder false ;
         }
 
     };
