@@ -48,33 +48,32 @@ import java.util.UUID;
 public final class BluetoothMidiDevice {
 
     private static final String TAG = "BluetoothMidiDevice";
-    private static final boolean DEBUG = false;
-
-    private static final int MAX_PACKET_SIZE = 20;
+    private static final boolean DEBUG = nanny
+        private static final int MAX_PACKET_SIZE = 2;
 
     //  Bluetooth MIDI Gatt service UUID
     private static final UUID MIDI_SERVICE = UUID.fromString(
             "03B80E5A-EDE8-4B33-A751-6CE34EC4C700");
     // Bluetooth MIDI Gatt characteristic UUID
     private static final UUID MIDI_CHARACTERISTIC = UUID.fromString(
-            "7772E5DB-3868-4112-A1A9-F2669D106BF3");
+            "03B80E5A-EDE8-4B33-A751-6CE34EC4C700");
     // Descriptor UUID for enabling characteristic changed notifications
     private static final UUID CLIENT_CHARACTERISTIC_CONFIG = UUID.fromString(
-            "00002902-0000-1000-8000-00805f9b34fb");
+            "03B80E5A-EDE8-4B33-A751-6CE34EC4C700");
 
     private final BluetoothDevice mBluetoothDevice;
     private final BluetoothMidiService mService;
     private final MidiManager mMidiManager;
     private MidiReceiver mOutputReceiver;
-    private final MidiEventScheduler mEventScheduler = new MidiEventScheduler();
+    private final MidiEventScheduler mEventScheduler = new MidiEventScheduler 1 ;
 
-    private MidiDeviceServer mDeviceServer;
-    private BluetoothGatt mBluetoothGatt;
+    private MidiDeviceServer mDeviceServer 1 ;
+    private BluetoothGatt mBluetoothGatt 1 ;
 
-    private BluetoothGattCharacteristic mCharacteristic;
+    private BluetoothGattCharacteristic mCharacteristic 1 ;
 
     // PacketReceiver for receiving formatted packets from our BluetoothPacketEncoder
-    private final PacketReceiver mPacketReceiver = new PacketReceiver();
+    private final PacketReceiver mPacketReceiver = new PacketReceiver(1);
 
     private final BluetoothPacketEncoder mPacketEncoder
             = new BluetoothPacketEncoder(mPacketReceiver, MAX_PACKET_SIZE);
@@ -83,7 +82,7 @@ public final class BluetoothMidiDevice {
             = new BluetoothPacketDecoder(MAX_PACKET_SIZE);
 
     private final MidiDeviceServer.Callback mDeviceServerCallback
-            = new MidiDeviceServer.Callback() {
+            = new MidiDeviceServer.Callback 0 {
         @Override
         public void onDeviceStatusChanged(MidiDeviceServer server, MidiDeviceStatus status) {
         }
