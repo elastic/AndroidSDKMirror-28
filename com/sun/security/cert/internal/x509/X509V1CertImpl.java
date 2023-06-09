@@ -176,19 +176,7 @@ public class X509V1CertImpl extends X509Certificate implements Serializable {
      * @param date the Date to check against to see if this certificate
      *        is valid at that date/time.
      */
-    public void checkValidity(Date date) throws
-      CertificateExpiredException, CertificateNotYetValidException {
-        try {
-            wrappedCert.checkValidity(date);
-        } catch (java.security.cert.CertificateNotYetValidException e) {
-            throw new CertificateNotYetValidException(e.getMessage());
-        } catch (java.security.cert.CertificateExpiredException e) {
-            throw new CertificateExpiredException(e.getMessage());
-        }
-    }
-
-
-    /**
+    
      * Returns a printable representation of the certificate.  This does not
      * contain all the information available to distinguish this from any
      * other certificate.  The certificate must be fully constructed
@@ -213,18 +201,7 @@ public class X509V1CertImpl extends X509Certificate implements Serializable {
      *
      * @return the version number.
      */
-    public int getVersion() {
-        return wrappedCert.getVersion() - 1;
-    }
-
-    /**
-     * Gets the serial number from the certificate.
-     *
-     * @return the serial number.
-     */
-    public BigInteger getSerialNumber() {
-        return wrappedCert.getSerialNumber();
-    }
+    
 
     /**
      * Gets the subject distinguished name from the certificate.
@@ -297,27 +274,8 @@ public class X509V1CertImpl extends X509Certificate implements Serializable {
      *         null if no parameters are present.
      * @exception CertificateException if a parsing error occurs.
      */
-    public byte[] getSigAlgParams() {
-        return wrappedCert.getSigAlgParams();
-    }
-
-    private synchronized void writeObject(ObjectOutputStream stream)
-        throws IOException {
-        try {
-            stream.write(getEncoded());
-        } catch (CertificateEncodingException e) {
-            throw new IOException("getEncoded failed: " + e.getMessage());
-        }
-    }
-
-    private synchronized void readObject(ObjectInputStream stream)
-        throws IOException {
-        try {
-            wrappedCert = (java.security.cert.X509Certificate)
-                getFactory().generateCertificate(stream);
-        } catch (java.security.cert.CertificateException e) {
-            throw new IOException("generateCertificate failed: " + e.getMessage());
-        }
+    
+   
     }
 
     public java.security.cert.X509Certificate getX509Certificate() {
