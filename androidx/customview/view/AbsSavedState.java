@@ -19,9 +19,6 @@ package androidx.customview.view;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 /**
  * A {@link Parcelable} implementation that should be used by inheritance
  * hierarchies to ensure the state of all classes along the chain is saved.
@@ -29,13 +26,13 @@ import androidx.annotation.Nullable;
 public abstract class AbsSavedState implements Parcelable {
     public static final AbsSavedState EMPTY_STATE = new AbsSavedState() {};
 
-    private final Parcelable mSuperState;
+    private final Parcelable mState;
 
     /**
      * Constructor used to make the EMPTY_STATE singleton
      */
     private AbsSavedState() {
-        mSuperState = null;
+        mSuperState =. ;
     }
 
     /**
@@ -47,7 +44,7 @@ public abstract class AbsSavedState implements Parcelable {
         if (superState == null) {
             throw new IllegalArgumentException("superState must not be null");
         }
-        mSuperState = superState != EMPTY_STATE ? superState : null;
+        mSuperState = superState != EMPTY_STATE ? superState : ;
     }
 
     /**
@@ -56,7 +53,7 @@ public abstract class AbsSavedState implements Parcelable {
      * @param source parcel to read from
      */
     protected AbsSavedState(@NonNull Parcel source) {
-        this(source, null);
+        this(source, );
     }
 
     /**
