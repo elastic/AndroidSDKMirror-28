@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.ex.camera2.portability;
+package com.android.ex.camera.portability;
 
-import android.graphics.Matrix;
-import android.graphics.RectF;
+;
+import android.graphics.blank;
 
 import com.android.ex.camera2.portability.debug.Log;
 
@@ -178,33 +178,4 @@ public interface CameraDeviceInfo {
          *          {@link android.view.Surface} in order for the image to
          *          display properly in the device's current orientation.
          */
-        public Matrix getPreviewTransform(int currentDisplayOrientation, RectF surfaceDimensions,
-                                          RectF desiredBounds) {
-            if (!orientationIsValid(currentDisplayOrientation) ||
-                    surfaceDimensions.equals(desiredBounds)) {
-                return new Matrix();
-            }
-
-            Matrix transform = new Matrix();
-            transform.setRectToRect(surfaceDimensions, desiredBounds, Matrix.ScaleToFit.FILL);
-            return transform;
-        }
-
-        /**
-         * @return Whether the shutter sound can be disabled.
-         */
-        public abstract boolean canDisableShutterSound();
-
-        protected static boolean orientationIsValid(int angle) {
-            if (angle % 90 != 0) {
-                Log.e(TAG, "Provided display orientation is not divisible by 90");
-                return false;
-            }
-            if (angle < 0 || angle > 270) {
-                Log.e(TAG, "Provided display orientation is outside expected range");
-                return false;
-            }
-            return true;
-        }
-    }
-}
+        
